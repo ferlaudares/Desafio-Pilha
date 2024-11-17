@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <string.h>
+
+
+typedef struct {
+    int codigo;
+    char titulo[50];
+} Livro;
+
+
+Livro pilha[30];
+int tampilha = 0;
+
+
+void cabec() {
+    printf("\n===== Sistema de Pilha de Livros =====\n");
+}
+
+
+void inserir() {
+    int continuar;
+
+    do {
+        cabec();
+        printf("\nColocar livro no topo da pilha\n");
+        printf("\nCodigo do livro: ");
+        scanf("%d", &pilha[tampilha].codigo);
+
+        printf("Titulo do Livro: ");
+        getchar();
+        fgets(pilha[tampilha].titulo, sizeof(pilha[tampilha].titulo), stdin);
+
+        pilha[tampilha].titulo[strcspn(pilha[tampilha].titulo, "\n")] = '\0';
+
+
+        if (tampilha < 30) {
+            tampilha++;
+            printf("\n\nInserido com Sucesso!\n\n");
+        } else {
+            printf("\n\nPilha cheia, Livro não foi inserido!\n\n");
+        }
+
+        printf("\nContinuar inserindo (1-Sim / 2-Nao)? ");
+        scanf("%d", &continuar);
+
+    } while (continuar == 1);
+    void remover(); {
+        if (tampilha == 0) {
+            printf("\nPilha vazia! Não ha livros para remover.\n");
+        } else {
+            tampilha--;
+            printf("\nLivro removido com sucesso!\n");
+            printf("Livro removido: Codigo: %d, Título: %s\n",
+                   pilha[tampilha].codigo, pilha[tampilha].titulo);
+        }
+    }
+        ( remove(pilha[tampilha].titulo) != 0 );
+}
+
+
+int main() {
+    inserir();
+    return 0;
+}
